@@ -6,6 +6,7 @@ Each app has its own folder and published address. [Add a future app](../docs/AD
 | Application | Category | Purpose |
 | --- | --- | --- |
 | [Artikel Trainer](https://nad-web.github.io/public/applications/artikel-trainer/) | languages | Make der, die, and das a little less mysterious. |
+| [Boredom Roulette](https://nad-web.github.io/public/applications/boredom-roulette/) | fun | Less scrolling. More stories. Spin 120 original mini adventures, solo or together. |
 | [Break Buddy](https://nad-web.github.io/public/applications/break-buddy/) | health-wellbeing | A gentle reminder to step away from the screen. |
 | [Decision Wheel](https://nad-web.github.io/public/applications/decision-wheel/) | fun | Too many options? Give a small decision a playful spin. |
 | [Deutsch Daily](https://nad-web.github.io/public/applications/deutsch-daily/) | languages | Build a German vocabulary habit, one useful word at a time. |
