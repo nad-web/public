@@ -1,0 +1,10 @@
+{
+  "id": "rooftop-cat",
+  "name": "Rooftop Cat",
+  "summary": "A little cat. A big skyline. Leap between rooftops, catch fish and find your flow.",
+  "category": "fun",
+  "version": "1.0.0",
+  "status": "ready",
+  "offline": false,
+  "offlineStrategy": "Custom compiled app-scoped service worker; generic repository worker compilation is disabled."
+}

@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f2e9" />
+    <meta
+      name="description"
+      content="A little cat. A big skyline. Catch fish, leap between rooftops and take your adventure offline. Designed and developed by Noorullah Adel."
+    />
+    <meta name="author" content="Noorullah Adel" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Rooftop Cat" />
+    <title>Rooftop Cat · A Noorullah Adel game</title>
+    <link rel="icon" href="./assets/cat-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#play">Skip to game</a>
+    <header class="site-header wrap">
+      <a class="brand" href="./" aria-label="Rooftop Cat home"
+        ><img src="./assets/cat-icon.svg" width="43" height="43" alt="" /><span
+          >rooftop<span class="brand-light">cat</span
+          ><span class="brand-dot">.</span
+          ><small>A NOORULLAH ADEL GAME</small></span
+        ></a
+      >
+      <nav aria-label="Game navigation">
+        <button class="text-button" id="how-button">How to play</button
+        ><button class="install-button" id="install-button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5" /></svg
+          >Install game
+        </button>
+      </nav>
+    </header>
+    <main class="wrap">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">
+            <span class="little-star">✳</span> SMALL PAWS. BIG ADVENTURES.
+          </p>
+          <h1 id="page-title">The city is your <em>playground.</em></h1>
+          <p class="intro-copy">
+            Chase a little wonder across the rooftops. Catch fish, find your
+            rhythm,<br class="desktop-break" />
+            and see how far those little paws can take you.
+          </p>
+        </div>
+        <div class="intro-note">
+          <span aria-hidden="true">↗</span>
+          <p>One more rooftop.<br />One more little adventure.</p>
+        </div>
+      </section>
+      <div class="workspace">
+        <section class="game-card" id="play" aria-label="Rooftop Cat game">
+          <div class="game-toolbar">
+            <div class="game-label">
+              <span class="live-dot"></span
+              ><strong id="mode-label">Cozy stroll</strong
+              ><span class="toolbar-divider">/</span
+              ><span id="sky-label">Golden hour</span>
+            </div>
+            <div class="game-actions">
+              <button
+                class="icon-button"
+                id="sound-button"
+                aria-pressed="false"
+                aria-label="Fish sounds"
+                title="Toggle fish-catching sounds"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m10 5-5 4H2v6h3l5 4V5Zm5 4 5 6m0-6-5 6" /></svg
+                ><span id="sound-label">Sound off</span></button
+              ><button
+                class="icon-button"
+                id="pause-button"
+                aria-label="Pause game"
+                disabled
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14M16 5v14" />
+                </svg></button
+              ><button
+                class="icon-button"
+                id="settings-button"
+                aria-label="Game settings"
+                title="Game settings"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 6h16M4 12h16M4 18h16M8 3v6m8 0v6m-6 0v6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="game-surface" id="game-surface">
+            <canvas
+              id="game"
+              width="960"
+              height="520"
+              tabindex="0"
+              role="img"
+              aria-label="Rooftop runner. Tap or press Space or Arrow Up to jump. Tap again for a second jump. Press P to pause."
+              aria-describedby="controls-help"
+              >Enable JavaScript in a browser with Canvas support to
+              play.</canvas
+            >
+            <div class="hud" aria-label="Current run statistics">
+              <div><span>SCORE</span><strong id="score">00000</strong></div>
+              <div class="hud-fish">
+                <svg viewBox="0 0 30 20" aria-hidden="true">
+                  <path
+                    d="M7 10C13-1 25 3 28 10 25 17 13 21 7 10L1 4v12l6-6Z"
+                  />
+                  <circle cx="23" cy="9" r="1.4" /></svg
+                ><strong id="fish-count">0</strong
+                ><span id="combo" hidden>×1</span>
+              </div>
+              <div class="hud-right">
+                <span id="distance">0 m</span
+                ><span id="lives" aria-label="3 lives">♥ ♥ ♥</span>
+              </div>
+            </div>
+            <div class="run-notice" id="run-notice" role="status"></div>
+            <div class="screen-overlay" id="screen-overlay">
+              <div class="overlay-card">
+                <span class="pill" id="overlay-kicker"
+                  >YOUR NEXT LITTLE ESCAPE</span
+                >
+                <h2 id="overlay-title">
+                  A skyline.<br />A curious little cat.
+                </h2>
+                <p id="overlay-description">
+                  A few rooftops, a pocketful of fish,<br />and nowhere you need
+                  to be.
+                </p>
+                <div class="result-grid" id="result-grid" hidden>
+                  <span
+                    ><small>Score</small
+                    ><strong id="result-score">0</strong></span
+                  ><span
+                    ><small>Fish</small
+                    ><strong id="result-fish">0</strong></span
+                  ><span
+                    ><small>Distance</small
+                    ><strong id="result-distance">0 m</strong></span
+                  >
+                </div>
+                <button class="primary-button" id="start-button">
+                  Let’s go →</button
+                ><button class="subtle-button" id="menu-button" hidden>
+                  Finish this run</button
+                ><small class="overlay-hint" id="overlay-hint"
+                  >Tap to jump. Tap again to fly a little higher.</small
+                >
+              </div>
+            </div>
+            <div class="canvas-brand">
+              ROOFTOP CAT <span>© NOORULLAH ADEL 2026</span>
+            </div>
+          </div>
+          <div class="game-bottom">
+            <p id="controls-help">
+              <span class="keycap">SPACE</span> or
+              <span class="keycap">↑</span> to jump
+              <span class="controls-dot">·</span> Tap twice for a double jump
+            </p>
+            <button class="jump-button" id="jump-button" disabled>
+              <span aria-hidden="true">↟</span> Jump
+            </button>
+          </div>
+          <div class="offline-bar">
+            <span id="offline-status" role="status"
+              >Checking offline availability…</span
+            ><button class="inline-button" id="retry-offline" hidden>
+              Try again</button
+            ><button class="inline-button" id="update-button" hidden>
+              Update game</button
+            ><span class="version">v1.0 · MADE TO WANDER</span>
+          </div>
+        </section>
+        <aside class="side-panel" aria-label="Your adventure">
+          <section class="pace-section">
+            <p class="section-label">PICK YOUR PACE</p>
+            <div class="mode-list" role="group" aria-label="Game mode">
+              <button data-mode="cozy" class="mode-option" aria-pressed="true">
+                <span class="mode-symbol" aria-hidden="true">☁</span
+                ><span
+                  ><strong>Cozy stroll</strong
+                  ><small>A softer pace. Room to breathe.</small></span
+                ><span class="mode-check" aria-hidden="true">✓</span></button
+              ><button
+                data-mode="chase"
+                class="mode-option"
+                aria-pressed="false"
+              >
+                <span class="mode-symbol" aria-hidden="true">ϟ</span
+                ><span
+                  ><strong>Rooftop chase</strong
+                  ><small>A little faster. A little braver.</small></span
+                ><span class="mode-check" aria-hidden="true">✓</span></button
+              ><button
+                data-mode="daily"
+                class="mode-option"
+                aria-pressed="false"
+              >
+                <span class="mode-symbol" aria-hidden="true">☀</span
+                ><span
+                  ><strong>Daily route</strong
+                  ><small>A fresh 1,000 m adventure.</small></span
+                ><span class="mode-check" aria-hidden="true">✓</span>
+              </button>
+            </div>
+            <p class="mode-tip" id="mode-tip">
+              Three hearts and a gentler skyline. A lovely place to start.
+            </p>
+          </section>
+          <section class="best-card">
+            <div>
+              <span class="section-label">YOUR PERSONAL BEST</span
+              ><strong id="best-score">0<span> PTS</span></strong
+              ><small id="best-context"
+                >Cozy stroll · saved on this device</small
+              >
+            </div>
+            <svg viewBox="0 0 64 72" aria-hidden="true">
+              <path
+                d="M18 8h28v18c0 13-7 21-14 21S18 39 18 26V8Zm0 5H8v8c0 9 6 15 13 15m25-23h10v8c0 9-6 15-13 15M32 47v13M20 64h24"
+              />
+            </svg>
+          </section>
+          <section class="mission-section">
+            <div class="section-heading">
+              <p class="section-label">LITTLE ADVENTURES</p>
+              <span id="mission-count">0 / 3</span>
+            </div>
+            <p class="section-description">Three things to try on this run.</p>
+            <ul id="missions">
+              <li>
+                <span class="mission-icon">↗</span>
+                <div>
+                  <strong>Find your feet</strong><small>Travel 250 m</small
+                  ><progress
+                    id="mission-0"
+                    max="250"
+                    value="0"
+                    aria-label="Travel 250 meters"
+                  ></progress>
+                </div>
+                <span class="mission-value" id="mission-value-0">0 / 250</span>
+              </li>
+              <li>
+                <span class="mission-icon">◇</span>
+                <div>
+                  <strong>A little fish feast</strong
+                  ><small>Catch 15 fish</small
+                  ><progress
+                    id="mission-1"
+                    max="15"
+                    value="0"
+                    aria-label="Catch 15 fish"
+                  ></progress>
+                </div>
+                <span class="mission-value" id="mission-value-1">0 / 15</span>
+              </li>
+              <li>
+                <span class="mission-icon">✳</span>
+                <div>
+                  <strong>In the flow</strong><small>Build a ×5 streak</small
+                  ><progress
+                    id="mission-2"
+                    max="5"
+                    value="0"
+                    aria-label="Build a five times fish streak"
+                  ></progress>
+                </div>
+                <span class="mission-value" id="mission-value-2">0 / 5</span>
+              </li>
+            </ul>
+          </section>
+          <div class="small-note">
+            <span aria-hidden="true">♡</span>
+            <p>
+              Made for a moment to yourself.<br />No accounts. No ads. Just
+              little paws.
+            </p>
+          </div>
+        </aside>
+      </div>
+      <section class="tips-row" aria-label="Quick game tips">
+        <article>
+          <span class="tip-number">01</span>
+          <div>
+            <h3>Find your rhythm.</h3>
+            <p>
+              Tap the game or press Space to leap. A second tap gives you a
+              little extra sky.
+            </p>
+          </div>
+        </article>
+        <article>
+          <span class="tip-number">02</span>
+          <div>
+            <h3>Follow the fish.</h3>
+            <p>
+              Catch them in quick succession for a ×5 streak. Golden fish are
+              worth a little more.
+            </p>
+          </div>
+        </article>
+        <article>
+          <span class="tip-number">03</span>
+          <div>
+            <h3>Take it with you.</h3>
+            <p>
+              Add a little cat to your Home Screen. Once saved, the rooftops
+              come along offline.
+            </p>
+          </div>
+        </article>
+      </section>
+      <p id="storage-notice" class="storage-notice" role="status" hidden></p>
+    </main>
+    <footer class="site-footer wrap">
+      <div>
+        <strong>Made with curiosity. And a little cat energy.</strong>
+        <p>Designed & developed by <b>Noorullah Adel</b> · 2026</p>
+      </div>
+      <div class="footer-links">
+        <button class="text-button" id="credits-button">About & licenses</button
+        ><a href="./LICENSE">MIT license ↗</a>
+      </div>
+    </footer>
+    <div class="dialog-backdrop" id="dialog-backdrop" hidden></div>
+    <section
+      class="modal"
+      id="info-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialog-title"
+      hidden
+    >
+      <div class="modal-header">
+        <h2 id="dialog-title">Take the rooftops with you.</h2>
+        <button class="icon-button" id="close-dialog" aria-label="Close dialog">
+          ×
+        </button>
+      </div>
+      <div class="dialog-content" id="install-content" hidden>
+        <p class="dialog-intro">A little cat, right on your Home Screen.</p>
+        <button class="primary-button" id="native-install" hidden>
+          Install Rooftop Cat
+        </button>
+        <details open>
+          <summary>iPhone & iPad</summary>
+          <ol>
+            <li>Open this game’s published link in <strong>Safari</strong>.</li>
+            <li>
+              Open <strong>Share</strong> (the square with an upward arrow, or
+              Page Menu → Share).
+            </li>
+            <li>
+              Choose <strong>Add to Home Screen</strong>. If offered, keep
+              <strong>Open as Web App</strong> switched on, then tap
+              <strong>Add</strong>.
+            </li>
+            <li>
+              Open the new cat icon <strong>while online</strong>. Wait for
+              <strong>“Ready for offline adventures”</strong>.
+            </li>
+            <li>
+              Close the game, enable Airplane Mode and reopen its icon to check
+              your offline setup.
+            </li>
+          </ol>
+          <p>
+            Other iPhone browsers may offer the same Share action. If missing,
+            open the link in Safari. Menu names depend on your iOS version.
+          </p>
+        </details>
+        <details>
+          <summary>Android</summary>
+          <p>
+            Use your browser’s <strong>Install app</strong> or
+            <strong>Add to Home screen</strong> option, or the native install
+            button above when available. Open the new icon online once and
+            confirm offline readiness.
+          </p>
+        </details>
+        <details>
+          <summary>Desktop browsers</summary>
+          <p>
+            <strong>Chrome / Edge:</strong> use the install icon in the address
+            bar or the browser menu’s app-install option.
+          </p>
+          <p>
+            <strong>Safari on Mac:</strong> use
+            <strong>File → Add to Dock</strong> where supported.
+          </p>
+          <p>
+            <strong>Other browsers:</strong> play in a normal tab and bookmark
+            the link if installation is unavailable. Installation is optional.
+          </p>
+        </details>
+        <div class="notice-box">
+          <strong>Before heading offline</strong>
+          <p>
+            All game files must be saved first. Browsers can clear or evict
+            storage; installed apps may store scores separately from tabs.
+            Return online to prepare it again if needed.
+          </p>
+        </div>
+      </div>
+      <div class="dialog-content" id="how-content" hidden>
+        <p class="dialog-intro">Small paws. A little practice.</p>
+        <ul class="help-list">
+          <li>
+            <strong>Jump:</strong> tap the game, press Jump, Space, ↑ or W.
+          </li>
+          <li>
+            <strong>Double jump:</strong> tap or press again in the air. Two
+            jumps reset on landing.
+          </li>
+          <li>
+            <strong>Look ahead:</strong> clear chimneys and gaps. You have three
+            hearts and return to your last rooftop after a tumble.
+          </li>
+          <li>
+            <strong>Fish:</strong> regular fish start at 25 points, golden fish
+            at 75. Catches less than 2.6 seconds apart build a multiplier up to
+            ×5. Distance adds one point per meter.
+          </li>
+          <li>
+            <strong>Daily route:</strong> reach 1,000 m. The same local calendar
+            date gives the same route. Unlimited attempts; scores stay on this
+            device.
+          </li>
+          <li>
+            <strong>Pause:</strong> P, Escape or the pause button. Leaving the
+            tab also pauses. Resume when ready.
+          </li>
+          <li>
+            <strong>Sound:</strong> optional fish chimes, initially off. A fresh
+            tap may be needed after audio interruptions.
+          </li>
+        </ul>
+        <p>
+          This is a visual, timing-based game. Menus support keyboard and
+          assistive labels; the real-time course is not a fully nonvisual game.
+        </p>
+      </div>
+      <div class="dialog-content" id="settings-content" hidden>
+        <p class="dialog-intro">Make the rooftops feel like you.</p>
+        <label class="setting-row"
+          ><span
+            ><strong>Skyline</strong
+            ><small>A different kind of evening.</small></span
+          ><select id="sky-select">
+            <option value="sunset">Golden hour</option>
+            <option value="moonlight">Moonlight</option>
+          </select></label
+        ><label class="setting-row"
+          ><span
+            ><strong>Your little companion</strong
+            ><small>Same brave paws. A new coat.</small></span
+          ><select id="cat-select">
+            <option value="ginger">Ginger</option>
+            <option value="midnight">Midnight</option>
+            <option value="cloud">Cloud</option>
+          </select></label
+        ><label class="setting-row"
+          ><span
+            ><strong>Extra visual effects</strong
+            ><small
+              >Little celebrations. System reduced-motion settings take
+              priority.</small
+            ></span
+          ><input type="checkbox" id="motion-toggle" checked
+        /></label>
+        <div class="lifetime">
+          <span><strong id="total-runs">0</strong> adventures</span
+          ><span><strong id="total-fish">0</strong> fish caught</span>
+        </div>
+        <button class="secondary-button" id="export-button">
+          Export score records ↓
+        </button>
+        <div class="notice-box">
+          <p>
+            Scores stay in this browser profile. Runs do not resume on a fresh
+            launch. Use one tab per run. The JSON export is a readable archive,
+            not an automatic restore feature.
+          </p>
+        </div>
+        <details>
+          <summary>Reset local progress</summary>
+          <p>
+            Removes this game’s saved scores and preferences from this browser.
+          </p>
+          <label class="reset-label"
+            ><input type="checkbox" id="reset-confirm" /> I want to reset
+            Rooftop Cat’s local progress.</label
+          ><button class="danger-button" id="reset-button" disabled>
+            Reset this game
+          </button>
+        </details>
+      </div>
+      <div class="dialog-content" id="credits-content" hidden>
+        <p class="eyebrow">AN INDEPENDENT LITTLE ADVENTURE</p>
+        <p class="dialog-intro">Rooftop Cat</p>
+        <p>Designed & developed by <strong>Noorullah Adel · 2026</strong>.</p>
+        <p>
+          Game code, cat and skyline illustrations, icons, interface and
+          synthesized fish-catching chimes are original material released under
+          the <strong>MIT License</strong>.
+        </p>
+        <p>
+          No external game engine, font download, music recording, stock
+          artwork, advertising or analytics service is bundled. The interface
+          uses device-installed fonts. There are no external runtime requests.
+        </p>
+        <p>
+          <a href="./LICENSE">Full MIT license</a> ·
+          <a href="./THIRD_PARTY_NOTICES.md">Rights & provenance</a>
+        </p>
+        <p>
+          Browser and platform names belong to their respective owners. Apple,
+          Google, Microsoft and Mozilla do not sponsor this game.
+        </p>
+      </div>
+      <button class="secondary-button modal-done" id="dialog-done">
+        Back to the rooftops
+      </button>
+    </section>
+    <p class="sr-only" id="announcer" aria-live="polite"></p>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to play Rooftop Cat and prepare offline use.
+      </p></noscript
+    >
+  </body>
+</html>
