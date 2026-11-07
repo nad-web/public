@@ -30,6 +30,7 @@ For a future app, add `applications/my-app/index.html` plus that app's own brows
 | [QR Studio](https://nad-web.github.io/public/applications/qr-studio/) | everyday-tools | Make simple QR codes with an uncluttered preview. |
 | [Quiz Forge](https://nad-web.github.io/public/applications/quiz-forge/) | education | Turn a small question set into a focused practice round. |
 | [Regex Playground](https://nad-web.github.io/public/applications/regex-playground/) | developer-tools | Explore a pattern against sample text with clear feedback. |
+| [Rooftop Cat](https://nad-web.github.io/public/applications/rooftop-cat/) | fun | A little cat. A big skyline. Leap between rooftops, catch fish and find your flow. |
 | [Sankey Studio](https://nad-web.github.io/public/applications/sankey-diagram/) | visualisation | Open this independent browser application. |
 | [Savings Goal](https://nad-web.github.io/public/applications/savings-goal/) | finances | Turn a savings target into a clear, editable plan. |
 | [Trip Split](https://nad-web.github.io/public/applications/trip-split/) | on-the-way | Keep shared trip costs understandable from the first coffee. |
