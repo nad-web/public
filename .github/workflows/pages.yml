@@ -3,55 +3,46 @@ name: Verify and deploy Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   verify:
-    name: Verify source and build
+    name: Verify every app and build the library
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
         uses: actions/checkout@v7
-
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version: "24"
           package-manager-cache: false
-
       - name: Install from lockfile
         run: npm ci --ignore-scripts
-
-      - name: Check source
+      - name: Check source and app metadata
         run: npm run check
-
-      - name: Run tests
+      - name: Run repository and discovered app tests
         run: npm test
-
-      - name: Build portfolio
+      - name: Build every application
         run: npm run build
-
-      - name: Prepare Sankey Studio
-        run: |
-          node applications/sankey-diagram/scripts/check.mjs
-          node --test applications/sankey-diagram/tests/*.test.mjs
-          node applications/sankey-diagram/scripts/build.mjs --output dist/applications/sankey-diagram
-
-      - name: Prepare Math in Motion
-        run: |
-          node --test applications/math-in-motion/tests/*.test.mjs
-          node applications/math-in-motion/tools/build.mjs --output dist/applications/math-in-motion
-
       - name: Upload website
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Publish application library
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: verify
     runs-on: ubuntu-latest
     permissions:
@@ -63,7 +54,39 @@ jobs:
     steps:
       - name: Configure Pages
         uses: actions/configure-pages@v5
-
       - name: Publish website
         id: deployment
         uses: actions/deploy-pages@v4
+
+  catalogue:
+    name: Refresh repository application links
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Generate README links
+        run: npm run catalogue
+      - name: Commit catalogue
+        run: |
+          git fetch origin main
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            echo "A newer commit will refresh the catalogue."
+            exit 0
+          fi
+          git add README.md applications/README.md
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: refresh application links [skip ci]"
+          if ! git push origin HEAD:main; then
+            echo "::warning::README update blocked by repository rules. Website deployment runs independently."
+          fi

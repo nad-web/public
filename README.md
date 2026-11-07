@@ -5,11 +5,11 @@ Developed and designed by **Noorullah Adel · 2026**.
 [Open the application library](https://nad-web.github.io/public/applications/).
 
 Every app is a complete static browser application in `applications/<slug>/`. The build discovers app folders, creates the catalogue and publishes one GitHub Pages artifact. The protected Sankey Studio source is unchanged.
-
+<!--
 Read [the upload guide](docs/MIGRATION.md), [the future-app guide](docs/ADD_APP.md), [the audit](docs/AUDIT.md) and [current validation](docs/VALIDATION.md).
 
 For a future app, add `applications/my-app/index.html` plus that app's own browser-ready files. Commit to main. The existing workflow publishes it at `https://nad-web.github.io/public/applications/my-app/` and adds the library/README links. No per-app workflow edit is needed.
-
+-->
 <!-- APP_CATALOG_START -->
 | Application | Category | Purpose |
 | --- | --- | --- |
