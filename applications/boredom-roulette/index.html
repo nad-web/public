@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#3243c9" />
+    <meta
+      name="description"
+      content="Less scrolling. More stories. Spin 120 original mini adventures, play solo or together, and make a little room for fun. By Noorullah Adel."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Boredom Roulette" />
+    <title>Boredom Roulette · Noorullah Adel</title>
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#play">Skip to the game</a>
+    <header class="site-header wrap">
+      <a class="brand" href="./" aria-label="Boredom Roulette home"
+        ><img src="./assets/icon.svg" width="43" height="43" alt="" /><span
+          >boredom<span class="brand-second"
+            >roulette<span class="brand-dot">.</span></span
+          ></span
+        ></a
+      >
+      <div class="nav-actions">
+        <button class="nav-link" id="help-button">How to play</button>
+        <button class="nav-link pocket-nav" id="pocket-button">
+          <span aria-hidden="true">☆</span> <span>Your pocket</span
+          ><span class="mini-count" id="saved-count">0</span>
+        </button>
+        <button
+          class="icon-button"
+          id="sound-button"
+          aria-label="Turn sound on"
+          aria-pressed="false"
+          title="Sound off"
+        >
+          <span id="sound-icon" aria-hidden="true">♫</span>
+        </button>
+        <button
+          class="icon-button"
+          id="settings-button"
+          aria-label="Open settings"
+          title="Settings"
+        >
+          <span aria-hidden="true">⚙</span>
+        </button>
+        <button class="install-nav" id="install-button">
+          <span aria-hidden="true">↓</span> Install app
+        </button>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">
+            <span class="little-star" aria-hidden="true">✳</span> A SMALL SPIN.
+            A BETTER STORY.
+          </p>
+          <h1 id="hero-title">Less scrolling.<br /><em>More stories.</em></h1>
+          <p class="intro">
+            A little curiosity goes a long way. Let the wheel find<br
+              class="desktop-break"
+            />
+            your next tiny adventure.
+          </p>
+        </div>
+        <div class="hero-side">
+          <div class="ticket">
+            <span class="ticket-top">YOUR PERMISSION SLIP</span
+            ><strong>to do something<br />a little different.</strong
+            ><span class="ticket-bottom"
+              >120 ORIGINAL IDEAS · NO PLAN REQUIRED</span
+            ><span class="ticket-star" aria-hidden="true">✷</span>
+          </div>
+          <div class="score-strip" aria-label="Your progress">
+            <div><strong id="sparks-count">0</strong><span>✦ sparks</span></div>
+            <div>
+              <strong id="completed-count">0</strong><span>adventures</span>
+            </div>
+            <div>
+              <strong id="streak-count">0</strong><span>day streak</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="play-section"
+        id="play"
+        aria-label="Boredom Roulette game"
+      >
+        <div class="filter-bar">
+          <span class="filter-heading">Make it your kind of fun.</span>
+          <form id="filter-form" aria-label="Challenge filters">
+            <label
+              >I've got<select id="minutes-filter">
+                <option value="2">2 minutes</option>
+                <option value="5" selected>5 minutes</option>
+                <option value="15">15 minutes</option>
+              </select></label
+            ><label
+              >I'm playing<select id="mode-filter">
+                <option value="solo">Solo</option>
+                <option value="together">Together</option>
+              </select></label
+            ><label
+              >My energy<select id="energy-filter">
+                <option value="any">Any energy</option>
+                <option value="gentle">Gentle</option>
+                <option value="active">Active</option>
+              </select></label
+            ><label
+              >I'm staying<select id="place-filter">
+                <option value="any">Flexible</option>
+                <option value="inside">Inside</option>
+                <option value="outside">Outside</option>
+              </select></label
+            >
+          </form>
+        </div>
+        <div class="game-grid">
+          <div class="wheel-column">
+            <div class="wheel-eyebrow">
+              <span class="live-dot" aria-hidden="true"></span> LET A LITTLE
+              CHANCE IN
+            </div>
+            <div class="wheel-stage">
+              <span class="wheel-pointer" aria-hidden="true"></span
+              ><svg id="wheel-art" viewBox="0 0 440 440" aria-hidden="true">
+                <g id="wheel-sectors"></g></svg
+              ><button id="spin-button" class="spin-button">
+                <strong>SPIN</strong><span>surprise me ↗</span></button
+              ><span class="wheel-scribble" aria-hidden="true"
+                >good things<br />take a spin ⤴</span
+              ><span class="wheel-spark" aria-hidden="true">✧</span>
+            </div>
+            <p id="wheel-status" class="wheel-status" aria-live="polite">
+              Finding your next adventure…
+            </p>
+            <div
+              class="category-chips"
+              id="category-chips"
+              aria-label="Include these categories"
+            ></div>
+            <p class="small-note">
+              Tap a category to include it. Each category with fresh ideas gets
+              an equal chance.
+            </p>
+          </div>
+          <section class="adventure-column" aria-labelledby="challenge-title">
+            <div class="empty-card" id="empty-card">
+              <div class="card-sticker" aria-hidden="true">
+                THE PLOT<br />TWIST IS YOU.
+              </div>
+              <span class="empty-star" aria-hidden="true">✷</span>
+              <p class="eyebrow">LET'S SHAKE UP THE ORDINARY</p>
+              <h2 id="empty-title">
+                A little less “meh”.<br />A little more <em>“why not?”</em>
+              </h2>
+              <p>
+                Make something. Notice something.<br />Try something wonderfully
+                small.
+              </p>
+              <ol class="how-list">
+                <li><span>01</span> Choose your time and your vibe.</li>
+                <li><span>02</span> Spin for a fresh idea.</li>
+                <li><span>03</span> Give it a go. Collect a spark.</li>
+              </ol>
+              <div class="empty-foot">
+                <span>✦</span> No pressure. No perfect results required.
+              </div>
+            </div>
+            <article id="challenge-card" class="challenge-card" hidden>
+              <div class="challenge-top">
+                <span id="challenge-category" class="category-badge"></span
+                ><button
+                  id="favorite-button"
+                  class="icon-button favorite-button"
+                  aria-label="Save challenge to your pocket"
+                  aria-pressed="false"
+                >
+                  ☆
+                </button>
+              </div>
+              <p id="challenge-number" class="eyebrow challenge-number"></p>
+              <h2 id="challenge-title" tabindex="-1"></h2>
+              <div class="challenge-facts" id="challenge-facts"></div>
+              <p class="materials" id="challenge-materials"></p>
+              <ol class="challenge-steps" id="challenge-steps"></ol>
+              <div id="timer-panel" class="timer-panel" hidden>
+                <div>
+                  <span id="timer-label" class="timer-label"
+                    >Your tiny timebox</span
+                  ><output id="timer-output" aria-label="Time remaining"
+                    >05:00</output
+                  >
+                </div>
+                <button id="pause-button" class="soft-button">Pause</button>
+              </div>
+              <div id="completion-panel" class="completion-panel" hidden>
+                <span aria-hidden="true">✦</span>
+                <div>
+                  <strong id="reward-label"></strong>
+                  <p id="reward-note">A little adventure looks good on you.</p>
+                </div>
+              </div>
+              <button id="start-button" class="primary-button">
+                Let's do it <span aria-hidden="true">↗</span></button
+              ><button id="finish-button" class="primary-button" hidden>
+                I did it! <span aria-hidden="true">✓</span></button
+              ><button id="next-button" class="primary-button" hidden>
+                Spin another story <span aria-hidden="true">↗</span></button
+              ><button id="skip-button" class="skip-button">
+                Not my thing. Another idea ↻
+              </button>
+              <div class="share-row">
+                <button id="share-button" class="text-button">
+                  ↗ Share idea</button
+                ><a id="download-card" class="text-button" href="./" download>
+                  ↓ Download card
+                </a>
+              </div>
+              <p class="timer-note" id="challenge-note">
+                Start the optional timer. Finish whenever your adventure feels
+                complete.
+              </p>
+            </article>
+          </section>
+        </div>
+      </section>
+      <section class="daily-section" aria-labelledby="daily-heading">
+        <div class="daily-copy">
+          <span class="daily-symbol" aria-hidden="true">✦</span>
+          <div>
+            <p class="eyebrow">A LITTLE MOMENTUM</p>
+            <h2 id="daily-heading">Make it a daily trio.</h2>
+            <p id="daily-caption">
+              Three tiny adventures today. A little bonus for showing up.
+            </p>
+          </div>
+        </div>
+        <div class="daily-progress">
+          <div
+            class="trio-circles"
+            id="trio-circles"
+            aria-label="0 of 3 adventures completed today"
+          >
+            <span>1</span><span>2</span><span>3</span><i aria-hidden="true">→</i
+            ><span class="trio-reward">+30<br /><small>SPARKS</small></span>
+          </div>
+          <p id="daily-progress-text">0 of 3 completed today</p>
+        </div>
+      </section>
+      <section class="journal-section" aria-labelledby="journal-heading">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">PROOF YOU DID A LITTLE SOMETHING</p>
+            <h2 id="journal-heading">Your recent stories.</h2>
+          </div>
+          <button class="text-button" id="badges-button">
+            Your little milestones ↗
+          </button>
+        </div>
+        <div id="history-list" class="history-list">
+          <p class="empty-history">Your first adventure is just a spin away.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap">
+      <div class="footer-brand">Made for the moments in between.</div>
+      <p>Designed &amp; developed by <strong>Noorullah Adel · 2026</strong></p>
+      <div class="footer-links">
+        <a href="./LICENSE">MIT License</a
+        ><a href="./THIRD_PARTY_NOTICES.md">Credits &amp; notices</a
+        ><button id="footer-help" class="text-button">How to play</button>
+      </div>
+      <div class="offline-line">
+        <span class="status-dot" aria-hidden="true"></span
+        ><span id="offline-status">Checking offline setup…</span
+        ><button id="retry-offline" class="text-button" hidden>Try again</button
+        ><button id="update-button" class="text-button" hidden>
+          Update ready · Reload</button
+        ><button id="native-install" class="text-button" hidden>
+          Install now
+        </button>
+      </div>
+      <p id="storage-status" class="storage-status" role="status"></p>
+    </footer>
+    <noscript
+      ><p class="noscript">
+        Please enable JavaScript to spin Boredom Roulette. The game runs locally
+        and does not need an account.
+      </p></noscript
+    >
+    <dialog
+      role="dialog"
+      aria-modal="true"
+      id="app-dialog"
+      aria-labelledby="dialog-title"
+    >
+      <div class="dialog-head">
+        <h2 id="dialog-title"></h2>
+        <button id="close-dialog" class="icon-button" aria-label="Close dialog">
+          ×
+        </button>
+      </div>
+      <div id="dialog-body"></div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+  </body>
+</html>

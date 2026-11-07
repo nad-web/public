@@ -1,0 +1,10 @@
+{
+  "id": "boredom-roulette",
+  "name": "Boredom Roulette",
+  "summary": "Less scrolling. More stories. Spin 120 original mini adventures, solo or together.",
+  "category": "fun",
+  "version": "1.0.0",
+  "status": "ready",
+  "offline": false,
+  "offlineStrategy": "Custom compiled app-scoped service worker; generic repository worker compilation is disabled."
+}
