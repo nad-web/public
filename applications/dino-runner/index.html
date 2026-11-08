@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#506952" />
+    <meta
+      name="description"
+      content="Small arms. Big adventures. An original dinosaur runner with jumps, ducks and an endless horizon. Designed and developed by Noorullah Adel."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Dino Runner" />
+    <title>Dino Runner · Noorullah Adel</title>
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#play">Skip to the game</a>
+    <header class="wrap site-header">
+      <a class="brand" href="./" aria-label="Dino Runner home"
+        ><img src="./assets/icon.svg" width="44" height="44" alt="" /><span
+          ><strong>dino runner<span>.</span></strong
+          ><small>NOORULLAH'S BUILD LAB</small></span
+        ></a
+      >
+      <nav aria-label="Game help">
+        <button id="how-button" class="nav-button">How to play</button
+        ><button
+          id="settings-button"
+          class="round-button"
+          aria-label="Game settings"
+          title="Settings"
+        >
+          ⚙</button
+        ><button id="install-button" class="install-button">
+          ↓ <span>Install game</span>
+        </button>
+      </nav>
+    </header>
+    <main class="wrap">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">
+            <span aria-hidden="true">↗</span> A LITTLE ESCAPE. ONE LEAP AT A
+            TIME.
+          </p>
+          <h1 id="page-title">Small arms. <em>Big adventures.</em></h1>
+          <p>
+            Hop the cacti. Duck the flyers. See how far your little legs can go.
+          </p>
+        </div>
+        <div class="intro-stamp" aria-hidden="true">
+          <span>LESS SCROLL.</span><strong>MORE<br />ROAR.</strong
+          ><small>ARCADE NO. 03</small>
+        </div>
+      </section>
+      <div class="workspace">
+        <section id="play" class="game-panel" aria-label="Dinosaur runner game">
+          <div class="game-toolbar">
+            <span class="mode-label"
+              ><i aria-hidden="true"></i
+              ><span id="mode-label">Classic</span></span
+            ><span class="toolbar-tip" id="sky-label"
+              >A fresh little horizon</span
+            >
+            <div class="toolbar-buttons">
+              <button
+                id="sound-button"
+                class="toolbar-button"
+                aria-label="Turn sound on"
+                aria-pressed="false"
+              >
+                <span aria-hidden="true">♫</span
+                ><span id="sound-text">Sound off</span></button
+              ><button
+                id="pause-button"
+                class="toolbar-button"
+                aria-label="Pause game"
+                disabled
+              >
+                <span id="pause-symbol" aria-hidden="true">Ⅱ</span>
+              </button>
+            </div>
+          </div>
+          <div class="game-surface" id="game-surface">
+            <canvas
+              id="game"
+              tabindex="0"
+              role="img"
+              aria-label="Dinosaur runner. Space or Arrow Up to jump. Hold to jump higher. Arrow Down to duck. P or Escape to pause."
+              aria-describedby="controls-help"
+              >This game needs a browser with Canvas and JavaScript.</canvas
+            >
+            <div class="hud" aria-label="Current run">
+              <div class="current-score">
+                <span>RUN SCORE</span><output id="score">000000</output>
+              </div>
+              <div class="hud-right">
+                <span id="lives" aria-label="1 heart">♥</span
+                ><span id="run-distance">0 m</span
+                ><span id="sprint-time" hidden>60 s</span>
+              </div>
+            </div>
+            <div class="overlay" id="screen-overlay">
+              <div class="overlay-card">
+                <p class="overlay-label" id="overlay-label">
+                  THE HORIZON IS CALLING
+                </p>
+                <h2 id="overlay-title">Ready,<br />little legend?</h2>
+                <p id="overlay-body">
+                  An open desert. One curious dinosaur.<br />Let's see what's
+                  out there.
+                </p>
+                <button class="primary-button" id="start-button">
+                  Start running <span aria-hidden="true">↗</span>
+                </button>
+                <p class="overlay-hint" id="overlay-hint">
+                  Or tap the desert / press Space
+                </p>
+              </div>
+            </div>
+            <p id="canvas-error" class="canvas-error" hidden>
+              This browser could not open the game canvas. Try a current browser
+              with Canvas support.
+            </p>
+          </div>
+          <div class="controls-help" id="controls-help">
+            <span><kbd>SPACE</kbd> or <kbd>↑</kbd> jump · hold for height</span
+            ><span><kbd>↓</kbd> duck · <kbd>P</kbd> pause</span>
+          </div>
+          <div class="touch-controls">
+            <button id="jump-button" class="jump-button">
+              <span aria-hidden="true">↑</span> JUMP
+              <small>hold a little longer</small></button
+            ><button id="duck-button" class="duck-button" aria-pressed="false">
+              <span aria-hidden="true">↓</span> DUCK
+            </button>
+          </div>
+          <div class="offline-row">
+            <span class="offline-dot" aria-hidden="true"></span
+            ><span id="offline-status">Checking offline setup…</span
+            ><button id="retry-offline" class="text-button" hidden>
+              Try again</button
+            ><button id="update-button" class="text-button" hidden>
+              Update ready · Reload</button
+            ><button id="native-install" class="text-button" hidden>
+              Install now
+            </button>
+          </div>
+        </section>
+        <aside class="run-sidebar" aria-label="Choose your adventure">
+          <div class="side-heading">
+            <p class="eyebrow">YOUR LITTLE ADVENTURE</p>
+            <span class="version-tag">V1.0</span>
+          </div>
+          <div class="mode-options" id="mode-options" aria-label="Game mode">
+            <button data-mode="classic" aria-pressed="true">
+              <span class="mode-mark" aria-hidden="true">↗</span
+              ><span
+                ><strong>Classic</strong
+                ><small>One heart. Endless horizon.</small></span
+              ><i aria-hidden="true">✓</i></button
+            ><button data-mode="chill" aria-pressed="false">
+              <span class="mode-mark" aria-hidden="true">☼</span
+              ><span
+                ><strong>Chill</strong
+                ><small>A gentler pace. Three chances.</small></span
+              ><i aria-hidden="true">✓</i></button
+            ><button data-mode="sprint" aria-pressed="false">
+              <span class="mode-mark" aria-hidden="true">◷</span
+              ><span
+                ><strong>60s Sprint</strong
+                ><small>One heart. A minute to roam.</small></span
+              ><i aria-hidden="true">✓</i>
+            </button>
+          </div>
+          <div class="best-card">
+            <div>
+              <span>YOUR PERSONAL BEST</span
+              ><strong id="best-score">000000</strong
+              ><small id="best-mode">Classic · saved in this browser</small>
+            </div>
+            <span class="trophy" aria-hidden="true">✧</span>
+          </div>
+          <div class="goals">
+            <div class="goal-heading">
+              <p class="eyebrow">LITTLE THINGS TO TRY</p>
+              <span id="goal-count">0 / 3</span>
+            </div>
+            <div id="goals-list"></div>
+            <p class="goals-note">
+              Fresh goals every run. A little progress counts.
+            </p>
+          </div>
+          <button id="records-button" class="text-button records-link">
+            Your recent runs ↗
+          </button>
+        </aside>
+      </div>
+      <section class="notes" aria-label="Quick game tips">
+        <article>
+          <span>01</span>
+          <div>
+            <h3>Find your rhythm.</h3>
+            <p>
+              A tap makes a little hop. Hold a little longer for the taller
+              things in life.
+            </p>
+          </div>
+        </article>
+        <article>
+          <span>02</span>
+          <div>
+            <h3>Stay curious. Stay low.</h3>
+            <p>
+              Some flyers call for a duck. Others are happiest flying right over
+              your head.
+            </p>
+          </div>
+        </article>
+        <article>
+          <span>03</span>
+          <div>
+            <h3>Bring the desert along.</h3>
+            <p>
+              Add the game to your Home Screen. Once saved, your little escape
+              comes offline.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="wrap">
+      <div>
+        <strong>A little further. A little braver.</strong>
+        <p>Designed &amp; developed by <b>Noorullah Adel · 2026</b></p>
+      </div>
+      <div class="footer-links">
+        <button id="footer-help" class="text-button">How to play</button>
+        <button id="credits-button" class="text-button">
+          About &amp; credits</button
+        ><a href="./LICENSE">MIT License</a
+        ><a href="./THIRD_PARTY_NOTICES.md">Notices</a>
+      </div>
+      <p id="storage-warning" class="storage-warning" role="status"></p>
+    </footer>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to play Dino Runner. No account is required.
+      </p></noscript
+    >
+    <dialog
+      id="dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialog-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="dialog-title"></h2>
+        <button
+          id="close-dialog"
+          class="round-button"
+          aria-label="Close dialog"
+        >
+          ×
+        </button>
+      </div>
+      <div id="dialog-body"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <div
+      class="sr-only"
+      id="game-status"
+      role="status"
+      aria-live="polite"
+    ></div>
+  </body>
+</html>

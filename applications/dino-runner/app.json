@@ -1,0 +1,10 @@
+{
+  "id": "dino-runner",
+  "name": "Dino Runner",
+  "summary": "Small arms. Big adventures. An original jump-and-duck dinosaur runner.",
+  "category": "fun",
+  "version": "1.0.0",
+  "status": "ready",
+  "offline": false,
+  "offlineStrategy": "Custom compiled app-scoped service worker; generic repository worker compilation is disabled."
+}
