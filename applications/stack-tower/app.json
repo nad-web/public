@@ -1,0 +1,10 @@
+{
+  "id": "stack-tower",
+  "name": "Stack Tower",
+  "summary": "An original one-tap isometric tower game with perfect-drop streaks.",
+  "category": "fun",
+  "version": "1.0.0",
+  "status": "ready",
+  "offline": false,
+  "offlineStrategy": "Custom compiled app-scoped service worker; generic repository compilation is disabled."
+}

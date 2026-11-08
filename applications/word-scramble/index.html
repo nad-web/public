@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#7650d3" />
+    <meta
+      name="description"
+      content="Untangle original word puzzles with tap-to-place letters. Designed and developed by Noorullah Adel."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Word Scramble" />
+    <title>Word Scramble · Noorullah Adel</title>
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body data-game="word">
+    <a class="skip" href="#launch">Skip to game choices</a>
+    <header class="home-header wrap">
+      <a class="brand" href="./"
+        ><img src="./assets/icon.svg" alt="" width="43" height="43" /><span
+          ><strong>Word Scramble</strong
+          ><small>NOORULLAH’S TINY ARCADE</small></span
+        ></a
+      >
+      <nav class="home-nav" aria-label="Game tools">
+        <button id="help-home" class="icon-button" aria-label="How to play">
+          ?</button
+        ><button
+          id="sound-home"
+          class="icon-button"
+          aria-label="Turn sound on"
+          aria-pressed="false"
+        >
+          ♩</button
+        ><button id="settings-home" class="icon-button" aria-label="Settings">
+          ⚙</button
+        ><button id="install-button" class="pill">↓ Install</button>
+      </nav>
+    </header>
+    <main class="home-content wrap">
+      <section class="home-hero">
+        <div>
+          <p class="eyebrow">A LITTLE LETTER PLAY. A FRESH PERSPECTIVE.</p>
+          <h1 class="hero-title">Unmix.<br /><em>Unwind.</em></h1>
+          <p class="hero-description">
+            A handful of letters. A hidden word.<br />Give your mind a lovely
+            little detour.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">Tap, don’t type</span
+            ><span class="tag">Play offline</span
+            ><span class="tag"
+              ><span id="word-count">95</span> original clues</span
+            >
+          </div>
+        </div>
+        <section id="launch" class="launch-card" aria-label="Game choices">
+          <div class="launch-art" aria-hidden="true">
+            <span class="art-tile">W</span><span class="art-tile">O</span
+            ><span class="art-tile">R</span><span class="art-tile">D</span>
+          </div>
+          <h2>What’s your kind of wordplay?</h2>
+          <div class="choice-row">
+            <label for="mode-choice">Your pace</label
+            ><select id="mode-choice">
+              <option value="relax">Relax · five words</option>
+              <option value="rush">Rush · 90 seconds</option>
+              <option value="daily">Daily five · UTC</option>
+            </select>
+          </div>
+          <div class="choice-row">
+            <label for="category-choice">Your world</label
+            ><select id="category-choice">
+              <option value="all">A little of everything</option>
+              <option value="animals">Animals</option>
+              <option value="nature">Nature</option>
+              <option value="everyday">Everyday things</option>
+              <option value="creative">Creative life</option>
+            </select>
+          </div>
+          <p id="mode-description" class="mode-description">
+            Five words. Room to think.
+          </p>
+          <button id="play-start" class="action">Let’s untangle →</button>
+          <div class="launch-facts">
+            <span>Your best <strong id="home-best">0</strong> pts</span
+            ><span>Screen-filling play ↗</span>
+          </div>
+        </section>
+      </section>
+    </main>
+    <footer class="home-footer wrap">
+      <div>
+        Designed &amp; developed by <b>Noorullah Adel · 2026</b><br />Made for a
+        little moment of play.
+      </div>
+      <div>
+        <button id="footer-help" class="text-button">How to play</button
+        ><a href="./LICENSE">MIT License</a
+        ><a href="./THIRD_PARTY_NOTICES.md">Credits &amp; notices</a>
+      </div>
+      <div class="offline-status">
+        <span id="offline-status">Checking offline files…</span
+        ><button id="retry-offline" class="text-button" hidden>Try again</button
+        ><button id="update-button" class="text-button" hidden>
+          Update ready · Reload</button
+        ><button id="native-install" class="text-button" hidden>
+          Install now
+        </button>
+      </div>
+    </footer>
+    <p id="record-warning" class="record-warning" role="status"></p>
+    <section
+      id="play-shell"
+      class="play-shell"
+      tabindex="-1"
+      aria-label="Word Scramble play screen"
+      hidden
+    >
+      <header class="play-header">
+        <button
+          id="home-button"
+          class="icon-button"
+          aria-label="Pause and menu"
+        >
+          ←
+        </button>
+        <div>
+          <strong>Word Scramble</strong
+          ><small id="play-mode">READY WHEN YOU ARE</small>
+        </div>
+        <nav class="play-nav" aria-label="Play controls">
+          <button id="help-play" class="icon-button" aria-label="How to play">
+            ?</button
+          ><button
+            id="sound-play"
+            class="icon-button"
+            aria-label="Turn sound on"
+            aria-pressed="false"
+          >
+            ♩</button
+          ><button
+            id="fullscreen-button"
+            class="icon-button"
+            aria-label="Toggle native fullscreen"
+            title="Fullscreen"
+          >
+            ⛶</button
+          ><button
+            id="pause-button"
+            class="icon-button"
+            aria-label="Pause game"
+          >
+            Ⅱ
+          </button>
+        </nav>
+      </header>
+      <div class="play-hud">
+        <div class="hud-cell">
+          <span>YOUR SCORE</span><strong id="score">0</strong>
+        </div>
+        <div class="hud-cell">
+          <span id="round-label">Puzzle 1 / 5</span
+          ><strong id="clock-label" class="metric-small">NO RUSH</strong>
+        </div>
+      </div>
+      <div class="word-board">
+        <p id="puzzle-category" class="puzzle-category"></p>
+        <h2 id="clue" class="clue"></h2>
+        <div
+          id="answer-tiles"
+          class="answer-tiles"
+          aria-label="Your answer"
+        ></div>
+        <p id="feedback" class="feedback" role="status"></p>
+        <div
+          id="letter-tiles"
+          class="letter-tiles"
+          aria-label="Available letters"
+        ></div>
+        <div class="word-tools">
+          <button id="clear-button">⌫ Clear</button
+          ><button id="shuffle-button">⇄ Shuffle</button
+          ><button id="hint-button">✧ Reveal letter −15</button>
+        </div>
+        <div class="board-actions">
+          <button id="check-button" class="action">Check word →</button
+          ><button id="skip-button" class="pill">Skip</button>
+        </div>
+      </div>
+      <p class="play-credit">ORIGINAL WORDPLAY · NOORULLAH ADEL · 2026</p>
+      <div id="game-overlay" class="overlay" hidden>
+        <div class="overlay-card">
+          <p id="overlay-eyebrow" class="eyebrow"></p>
+          <h2 id="overlay-title"></h2>
+          <p id="overlay-copy"></p>
+          <button id="overlay-primary" class="action">Resume game</button
+          ><button id="overlay-secondary" class="text-button">
+            Back to menu
+          </button>
+        </div>
+      </div>
+    </section>
+    <dialog id="dialog" aria-labelledby="dialog-title" aria-modal="true">
+      <div class="dialog-heading">
+        <h2 id="dialog-title"></h2>
+        <button id="close-dialog" class="icon-button" aria-label="Close dialog">
+          ×
+        </button>
+      </div>
+      <div id="dialog-body" class="dialog-body"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <div
+      id="live-status"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <noscript
+      ><p>Enable JavaScript to play. No account is required.</p></noscript
+    >
+  </body>
+</html>

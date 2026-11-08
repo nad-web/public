@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#101522" />
+    <meta
+      name="description"
+      content="An original one-tap isometric tower game with perfect-drop streaks. Designed and developed by Noorullah Adel."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Stack Tower" />
+    <title>Stack Tower · Noorullah Adel</title>
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body data-game="stack">
+    <a class="skip" href="#launch">Skip to game choices</a>
+    <header class="home-header wrap">
+      <a class="brand" href="./"
+        ><img src="./assets/icon.svg" alt="" width="43" height="43" /><span
+          ><strong>Stack Tower</strong
+          ><small>NOORULLAH’S TINY ARCADE</small></span
+        ></a
+      >
+      <nav class="home-nav" aria-label="Game tools">
+        <button id="help-home" class="icon-button" aria-label="How to play">
+          ?</button
+        ><button
+          id="sound-home"
+          class="icon-button"
+          aria-label="Turn sound on"
+          aria-pressed="false"
+        >
+          ♩</button
+        ><button id="settings-home" class="icon-button" aria-label="Settings">
+          ⚙</button
+        ><button id="install-button" class="pill">↓ Install</button>
+      </nav>
+    </header>
+    <main class="home-content wrap">
+      <section class="home-hero">
+        <div>
+          <p class="eyebrow">ONE TAP. ONE BLOCK. ONE MORE TRY.</p>
+          <h1 class="hero-title">A little<br /><em>higher.</em></h1>
+          <p class="hero-description">
+            Find the rhythm. Keep your balance.<br />Build something worth
+            looking up to.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">One-tap arcade</span
+            ><span class="tag">Original 3D-style art</span
+            ><span class="tag">Offline ready</span>
+          </div>
+        </div>
+        <section id="launch" class="launch-card" aria-label="Game choices">
+          <div class="launch-art">
+            <svg viewBox="0 0 330 220" aria-hidden="true">
+              <g stroke="#ffffff25" stroke-width="1">
+                <path d="M75 164 171 112 266 164 171 216Z" fill="#0e1827" />
+                <path d="M83 144 175 95 267 144 175 194Z" fill="#549dc9" />
+                <path d="M83 144 175 194 175 211 83 161Z" fill="#326c99" />
+                <path d="M175 194 267 144 267 161 175 211Z" fill="#3e7eab" />
+                <path d="M92 118 180 71 263 118 175 165Z" fill="#71d4c9" />
+                <path d="M92 118 175 165 175 183 92 136Z" fill="#3e9795" />
+                <path d="M175 165 263 118 263 136 175 183Z" fill="#53b8ab" />
+                <path d="M113 88 193 44 266 88 186 131Z" fill="#e8b07e" />
+                <path d="M113 88 186 131 186 149 113 106Z" fill="#bb7c52" />
+                <path d="M186 131 266 88 266 106 186 149Z" fill="#d99762" />
+                <path d="M68 46 143 5 218 46 143 87Z" fill="#cab3ea" />
+                <path d="M68 46 143 87 143 104 68 63Z" fill="#8d76b5" />
+                <path d="M143 87 218 46 218 63 143 104Z" fill="#aa8dcc" />
+              </g>
+              <path
+                d="M257 58h29m-7-7 7 7-7 7"
+                fill="none"
+                stroke="#f3b978"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <h2>How high is your next little best?</h2>
+          <div class="choice-row">
+            <label for="mode-choice">Your pace</label
+            ><select id="mode-choice">
+              <option value="classic">Classic</option>
+              <option value="chill">Chill</option>
+            </select>
+          </div>
+          <p id="mode-description" class="mode-description">
+            Find the rhythm. Keep the edges.
+          </p>
+          <button id="play-start" class="action">Build my tower ↗</button>
+          <p id="canvas-warning" class="canvas-warning" hidden>
+            This browser could not open a Canvas 2D context. Try a modern
+            browser with Canvas support.
+          </p>
+          <div class="launch-facts">
+            <span>Your best <strong id="home-best">0</strong> blocks</span
+            ><span>Screen-filling play ↗</span>
+          </div>
+        </section>
+      </section>
+    </main>
+    <footer class="home-footer wrap">
+      <div>
+        Designed &amp; developed by <b>Noorullah Adel · 2026</b><br />Made for a
+        little moment of play.
+      </div>
+      <div>
+        <button id="footer-help" class="text-button">How to play</button
+        ><a href="./LICENSE">MIT License</a
+        ><a href="./THIRD_PARTY_NOTICES.md">Credits &amp; notices</a>
+      </div>
+      <div class="offline-status">
+        <span id="offline-status">Checking offline files…</span
+        ><button id="retry-offline" class="text-button" hidden>Try again</button
+        ><button id="update-button" class="text-button" hidden>
+          Update ready · Reload</button
+        ><button id="native-install" class="text-button" hidden>
+          Install now
+        </button>
+      </div>
+    </footer>
+    <p id="record-warning" class="record-warning" role="status"></p>
+    <section
+      id="play-shell"
+      class="play-shell"
+      tabindex="-1"
+      aria-label="Stack Tower play screen"
+      hidden
+    >
+      <header class="play-header">
+        <button
+          id="home-button"
+          class="icon-button"
+          aria-label="Pause and menu"
+        >
+          ←
+        </button>
+        <div>
+          <strong>Stack Tower</strong
+          ><small id="play-mode">READY WHEN YOU ARE</small>
+        </div>
+        <nav class="play-nav" aria-label="Play controls">
+          <button id="help-play" class="icon-button" aria-label="How to play">
+            ?</button
+          ><button
+            id="sound-play"
+            class="icon-button"
+            aria-label="Turn sound on"
+            aria-pressed="false"
+          >
+            ♩</button
+          ><button
+            id="fullscreen-button"
+            class="icon-button"
+            aria-label="Toggle native fullscreen"
+            title="Fullscreen"
+          >
+            ⛶</button
+          ><button
+            id="pause-button"
+            class="icon-button"
+            aria-label="Pause game"
+          >
+            Ⅱ
+          </button>
+        </nav>
+      </header>
+      <div class="play-hud">
+        <div class="hud-cell">
+          <span>YOUR HEIGHT</span><strong id="height-score">0</strong>
+        </div>
+        <div class="hud-cell">
+          <span>BEST HEIGHT</span><strong id="best-height">0</strong>
+        </div>
+        <div class="hud-cell">
+          <span>POINTS</span><strong id="run-score">0</strong>
+        </div>
+        <div class="hud-cell">
+          <span>PERFECT STREAK</span><strong id="streak">0</strong>
+        </div>
+      </div>
+      <div class="tower-field">
+        <canvas
+          id="tower-canvas"
+          tabindex="0"
+          role="img"
+          aria-label="Moving isometric tower. Tap, Space or Enter to drop a block. P or Escape to pause."
+          >This game needs Canvas and JavaScript.</canvas
+        >
+        <p class="tower-instruction">LINE IT UP. LET IT LAND.</p>
+        <p
+          id="placement-feedback"
+          class="placement-feedback"
+          role="status"
+          hidden
+        ></p>
+      </div>
+      <div class="tower-action">
+        <button id="drop-button" class="action">
+          DROP BLOCK <small>tap or press Space</small>
+        </button>
+        <p class="play-credit">
+          DESIGNED &amp; DEVELOPED BY NOORULLAH ADEL · 2026
+        </p>
+      </div>
+      <div id="game-overlay" class="overlay" hidden>
+        <div class="overlay-card">
+          <p id="overlay-eyebrow" class="eyebrow"></p>
+          <h2 id="overlay-title"></h2>
+          <p id="overlay-copy"></p>
+          <button id="overlay-primary" class="action">Resume game</button
+          ><button id="overlay-secondary" class="text-button">
+            Back to menu
+          </button>
+        </div>
+      </div>
+    </section>
+    <dialog id="dialog" aria-labelledby="dialog-title" aria-modal="true">
+      <div class="dialog-heading">
+        <h2 id="dialog-title"></h2>
+        <button id="close-dialog" class="icon-button" aria-label="Close dialog">
+          ×
+        </button>
+      </div>
+      <div id="dialog-body" class="dialog-body"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <div
+      id="live-status"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <noscript
+      ><p>Enable JavaScript to play. No account is required.</p></noscript
+    >
+  </body>
+</html>

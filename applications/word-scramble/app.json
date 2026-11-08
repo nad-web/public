@@ -1,0 +1,10 @@
+{
+  "id": "word-scramble",
+  "name": "Word Scramble",
+  "summary": "Untangle original word puzzles with tap-to-place letters.",
+  "category": "fun",
+  "version": "1.0.0",
+  "status": "ready",
+  "offline": false,
+  "offlineStrategy": "Custom compiled app-scoped service worker; generic repository compilation is disabled."
+}

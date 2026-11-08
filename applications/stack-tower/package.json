@@ -1,0 +1,16 @@
+{
+  "name": "stack-tower",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Noorullah Adel",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "cache": "node scripts/update-cache.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
