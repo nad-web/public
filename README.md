@@ -18,6 +18,7 @@ For a future app, add `applications/my-app/index.html` plus that app's own brows
 | [Break Buddy](https://nad-web.github.io/public/applications/break-buddy/) | health-wellbeing | A gentle reminder to step away from the screen. |
 | [Decision Wheel](https://nad-web.github.io/public/applications/decision-wheel/) | fun | Too many options? Give a small decision a playful spin. |
 | [Deutsch Daily](https://nad-web.github.io/public/applications/deutsch-daily/) | languages | Build a German vocabulary habit, one useful word at a time. |
+| [Dino Runner](https://nad-web.github.io/public/applications/dino-runner/) | fun | Small arms. Big adventures. An original jump-and-duck dinosaur runner. |
 | [Flashcard Studio](https://nad-web.github.io/public/applications/flashcard-studio/) | education | Make a small deck, then practice what matters. |
 | [Focus Flow](https://nad-web.github.io/public/applications/focus-flow/) | productivity | A simple focus timer with room to breathe between sessions. |
 | [Habit Garden](https://nad-web.github.io/public/applications/habit-garden/) | health-wellbeing | Track a few everyday habits without turning life into a score. |
