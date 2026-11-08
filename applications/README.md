@@ -27,8 +27,10 @@ Each app has its own folder and published address. [Add a future app](../docs/AD
 | [Rooftop Cat](https://nad-web.github.io/public/applications/rooftop-cat/) | fun | A little cat. A big skyline. Leap between rooftops, catch fish and find your flow. |
 | [Sankey Studio](https://nad-web.github.io/public/applications/sankey-diagram/) | visualisation | Open this independent browser application. |
 | [Savings Goal](https://nad-web.github.io/public/applications/savings-goal/) | finances | Turn a savings target into a clear, editable plan. |
+| [Stack Tower](https://nad-web.github.io/public/applications/stack-tower/) | fun | An original one-tap isometric tower game with perfect-drop streaks. |
 | [Trip Split](https://nad-web.github.io/public/applications/trip-split/) | on-the-way | Keep shared trip costs understandable from the first coffee. |
 | [Unit Converter](https://nad-web.github.io/public/applications/unit-converter/) | everyday-tools | Everyday conversions with the units always in view. |
 | [Week Board](https://nad-web.github.io/public/applications/week-board/) | productivity | A small, flexible board for the week ahead. |
+| [Word Scramble](https://nad-web.github.io/public/applications/word-scramble/) | fun | Untangle original word puzzles with tap-to-place letters. |
 | [Writing Sparks](https://nad-web.github.io/public/applications/writing-sparks/) | creative | A small nudge for the blank page. |
 <!-- APP_CATALOG_END -->
