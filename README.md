@@ -13,6 +13,7 @@ For a future app, add `applications/my-app/index.html` plus that app's own brows
 <!-- APP_CATALOG_START -->
 | Application | Category | Purpose |
 | --- | --- | --- |
+| [Arc & Ink](https://nad-web.github.io/public/applications/arc-and-ink/) | fun | A compass and straightedge puzzle laboratory with 16 experiments, a daily challenge and a free drawing notebook. |
 | [Artikel Trainer](https://nad-web.github.io/public/applications/artikel-trainer/) | languages | Make der, die, and das a little less mysterious. |
 | [Boredom Roulette](https://nad-web.github.io/public/applications/boredom-roulette/) | fun | Less scrolling. More stories. Spin 120 original mini adventures, solo or together. |
 | [Break Buddy](https://nad-web.github.io/public/applications/break-buddy/) | health-wellbeing | A gentle reminder to step away from the screen. |
