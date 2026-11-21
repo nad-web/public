@@ -1,4 +1,7 @@
 # Arc & Ink
+---
+[arc-and-ink](https://nad-web.github.io/public/applications/arc-and-ink/)
+---
 
 An independent geometric construction game developed and designed by **Noorullah Adel · 2026**. A compass fixes distances, a straightedge joins exact points, and each crossing becomes material for the next move.
 
