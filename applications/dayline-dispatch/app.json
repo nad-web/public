@@ -1,0 +1,10 @@
+{
+  "id": "dayline-dispatch",
+  "name": "Dayline Dispatch",
+  "summary": "Draw tram lines, plan transfers and race the clock in three pocket-sized cities.",
+  "category": "fun",
+  "version": "1.0.0",
+  "status": "ready",
+  "offline": false,
+  "offlineStrategy": "Own integrity-checked, app-scoped worker."
+}

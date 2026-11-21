@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#143c3c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta
+      name="description"
+      content="A pocket transit game. Run three tram lines, clear rush-hour queues and earn dispatch tickets in three original cities. Developed and designed by Noorullah Adel."
+    />
+    <title>Dayline Dispatch · Noorullah’s Build Lab</title>
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="definitions"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol
+          id="ic-tram"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="5" y="3" width="14" height="15" rx="4" />
+          <path d="M7 8h10M8 3l2-2h4m-7 20 2-3m8 3-2-3" />
+          <circle cx="9" cy="14" r="1" />
+          <circle cx="15" cy="14" r="1" />
+        </symbol>
+        <symbol
+          id="ic-sound"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M3 9h4l5-4v14l-5-4H3zM16 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"
+          />
+        </symbol>
+        <symbol
+          id="ic-mute"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9h4l5-4v14l-5-4H3zM16 9l5 6m0-6-5 6" />
+        </symbol>
+        <symbol
+          id="ic-help"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M9 9a3 3 0 1 1 4.4 2.6c-1.4.7-1.4 1.3-1.4 2.5m0 3h.01" />
+        </symbol>
+        <symbol
+          id="ic-gear"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 7h7m4 0h7M3 17h11m4 0h3" />
+          <circle cx="12" cy="7" r="2" />
+          <circle cx="16" cy="17" r="2" />
+        </symbol>
+        <symbol
+          id="ic-map"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16m6-14v16" />
+        </symbol>
+        <symbol
+          id="ic-play"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m7 4 12 8-12 8z" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol
+          id="ic-pause"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M8 5v14m8-14v14" stroke-width="4" />
+        </symbol>
+        <symbol
+          id="ic-wave"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m4 17 5-5-5-5m8 10 5-5-5-5" stroke-width="2.7" />
+        </symbol>
+        <symbol
+          id="ic-route"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="5" cy="17" r="2.4" />
+          <circle cx="19" cy="7" r="2.4" />
+          <path d="M7.5 17H11l4-10h1.5" />
+        </symbol>
+        <symbol
+          id="ic-edit"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="m4 16 11-11 4 4L8 20l-5 1zM13 7l4 4m-2-6 2-2a2 2 0 0 1 3 0l1 1a2 2 0 0 1 0 3l-2 2"
+          />
+        </symbol>
+        <symbol
+          id="ic-ticket"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M3 6h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4zM14 6v2m0 3v2m0 3v2"
+          />
+        </symbol>
+        <symbol
+          id="ic-clock"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 6v6l4 2" />
+        </symbol>
+        <symbol
+          id="ic-stop"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="7" />
+          <circle cx="12" cy="12" r="2.2" />
+        </symbol>
+        <symbol
+          id="ic-close"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m5 5 14 14m0-14L5 19" />
+        </symbol>
+        <symbol
+          id="ic-calendar"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="5" width="18" height="16" rx="2" />
+          <path d="M7 3v5m10-5v5M3 11h18" />
+        </symbol>
+        <symbol
+          id="ic-people"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="9" cy="8" r="3" />
+          <path
+            d="M3 20v-2a6 6 0 0 1 12 0v2m1-15a3 3 0 0 1 0 6m2 3c2 1 3 2 3 5"
+          />
+        </symbol>
+        <symbol
+          id="ic-list"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M8 6h13M8 12h13M8 18h13M3 6h.1m-.1 6h.1m-.1 6h.1" />
+        </symbol>
+        <symbol
+          id="ic-bell"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 16h14l-2-3V9a5 5 0 0 0-10 0v4zM10 20h4" />
+        </symbol>
+        <symbol
+          id="ic-fit"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9V3h6m6 0h6v6m0 6v6h-6m-6 0H3v-6" />
+        </symbol>
+        <symbol
+          id="ic-flag"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 21V4c4-3 7 3 14 0v10c-8 3-10-3-14 0" />
+        </symbol>
+        <symbol
+          id="ic-check"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m4 12 5 5L20 6" />
+        </symbol>
+        <symbol
+          id="ic-undo"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 4-5 5 5 5M5 9h8a6 6 0 0 1 0 12" />
+        </symbol>
+        <symbol
+          id="ic-install"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 15V3m-4 4 4-4 4 4M5 12v8h14v-8" />
+        </symbol>
+      </defs>
+    </svg>
+    <div id="app">
+      <header class="mast">
+        <div class="brand">
+          <span class="mark"
+            ><svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect width="48" height="48" rx="11" fill="#ecbd69" />
+              <path
+                d="M6 33h14l7-12h14"
+                fill="none"
+                stroke="#143c3c"
+                stroke-width="3"
+              />
+              <circle
+                cx="11"
+                cy="33"
+                r="3.6"
+                fill="#ecbd69"
+                stroke="#143c3c"
+                stroke-width="2.4"
+              />
+              <circle
+                cx="36"
+                cy="21"
+                r="3.6"
+                fill="#ecbd69"
+                stroke="#143c3c"
+                stroke-width="2.4"
+              />
+              <path d="M9 23a8 8 0 0 1 16 0z" fill="#a7412f" />
+              <path
+                d="M9 26h14"
+                stroke="#143c3c"
+                stroke-width="1.5"
+              /></svg></span
+          ><span
+            >DAYLINE <b>DISPATCH</b
+            ><small class="brand-byline">By Noorullah Adel · 2026</small></span
+          >
+        </div>
+        <nav aria-label="Game options">
+          <button id="help" title="How to play" aria-label="How to play">
+            <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+              <use href="#ic-help"></use></svg
+            ><span>How to play</span></button
+          ><button
+            id="audio"
+            title="Sound off"
+            aria-label="Sound off"
+            aria-pressed="false"
+          >
+            <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+              <use href="#ic-mute"></use></svg
+            ><span>Sound off</span></button
+          ><button
+            id="settings"
+            title="Settings and installation"
+            aria-label="Settings and installation"
+          >
+            <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+              <use href="#ic-gear"></use>
+            </svg>
+          </button>
+        </nav>
+      </header>
+      <main id="game">
+        <section class="map-card" aria-label="Network map">
+          <header class="map-head">
+            <div class="city-title">
+              <p>Network map</p>
+              <h1 id="city">Mainbend</h1>
+            </div>
+            <div class="map-buttons">
+              <span id="phase" class="state">Ready</span
+              ><button id="choose-shift" class="light-btn">
+                <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                  <use href="#ic-map"></use></svg
+                >New shift
+              </button>
+            </div>
+          </header>
+          <div
+            id="map"
+            class="map"
+            role="group"
+            aria-label="Transit map. Select a station to see its passengers."
+          >
+            <svg
+              id="paper"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <svg
+              id="tracks"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <svg
+              id="vehicles"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <div id="stops"></div>
+            <span class="north" aria-hidden="true"
+              >N<svg viewBox="0 0 16 19">
+                <path
+                  d="M8 1 15 18 8 13 1 18z"
+                  fill="none"
+                  stroke="currentColor"
+                />
+                <path d="M8 1v12l-7 5z" fill="currentColor" /></svg
+            ></span>
+          </div>
+          <div class="station-strip">
+            <span class="station-dot" aria-hidden="true"></span>
+            <div>
+              <strong id="stop-title">Palm House</strong
+              ><span id="stop-brief"
+                >Choose a station to inspect its queue.</span
+              >
+            </div>
+            <button
+              id="stop-list"
+              class="small-btn"
+              aria-label="Open list of stations"
+              title="Station list"
+            >
+              <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                <use href="#ic-list"></use></svg
+              ><span>Stops</span>
+            </button>
+          </div>
+        </section>
+        <aside class="desk" aria-label="Dispatch controls">
+          <section class="ticket">
+            <div class="ticket-top">
+              <span id="mode">Rush shift</span
+              ><svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                <use href="#ic-ticket"></use>
+              </svg>
+            </div>
+            <div class="time-row">
+              <div>
+                <p id="time-label">Time left</p>
+                <strong id="time">03:00</strong>
+              </div>
+              <div class="clock-track" aria-hidden="true">
+                <span id="clock-fill"></span>
+              </div>
+            </div>
+            <div class="ticket-stats">
+              <div>
+                <p>Delivered</p>
+                <strong id="served">0</strong>
+              </div>
+              <div>
+                <p>Score</p>
+                <strong id="score">0</strong>
+              </div>
+            </div>
+          </section>
+          <section class="line-card">
+            <div class="line-heading">
+              <h2>Line desk</h2>
+              <span id="line-total">1 / 3 active</span>
+            </div>
+            <div class="lines" aria-label="Choose a line">
+              <button
+                type="button"
+                data-line="0"
+                class="line-btn l0"
+                aria-pressed="false"
+              >
+                <b>A</b><span>Ember</span><small>Unassigned</small></button
+              ><button
+                type="button"
+                data-line="1"
+                class="line-btn l1"
+                aria-pressed="true"
+              >
+                <b>B</b><span>Tide</span><small>Unassigned</small></button
+              ><button
+                type="button"
+                data-line="2"
+                class="line-btn l2"
+                aria-pressed="false"
+              >
+                <b>C</b><span>Iris</span><small>Unassigned</small>
+              </button>
+            </div>
+            <div id="line-normal">
+              <div class="route-desc" id="route-desc"></div>
+              <button id="edit-line" class="light-btn strong-btn">
+                <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                  <use href="#ic-edit"></use></svg
+                ><span>Draw line B</span>
+              </button>
+            </div>
+            <div id="line-editor" hidden>
+              <div class="draft-title" id="draft-title">
+                Choose stops in order.
+              </div>
+              <div class="edit-actions">
+                <button id="draft-clear" class="small-btn">Clear</button
+                ><button
+                  id="draft-undo"
+                  class="small-btn"
+                  title="Undo last draft stop"
+                  aria-label="Undo last draft stop"
+                >
+                  <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                    <use href="#ic-undo"></use>
+                  </svg></button
+                ><button id="draft-cancel" class="small-btn">Cancel</button
+                ><button id="draft-save" class="save-btn">Save line</button>
+              </div>
+            </div>
+          </section>
+          <button class="call-card" id="dispatch">
+            <span class="call-em"
+              ><svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                <use href="#ic-bell"></use></svg></span
+            ><span
+              ><small>Dispatch call</small
+              ><strong id="call-name">First departures</strong
+              ><span id="call-meta"
+                >Connect Palm House to a working line.</span
+              ></span
+            ><span class="call-tally" id="call-count"></span>
+          </button>
+        </aside>
+      </main>
+      <footer class="foot">
+        <div class="credit">
+          Developed and designed by <b>Noorullah Adel</b> · 2026
+        </div>
+        <div class="operation">
+          <button id="wave" class="wave-btn" disabled>
+            <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+              <use href="#ic-wave"></use></svg
+            ><span>Green Wave</span><small id="wave-count"></small></button
+          ><button id="run" class="run-btn">
+            <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+              <use href="#ic-play"></use></svg
+            ><span>Start shift</span>
+          </button>
+        </div>
+      </footer>
+      <div
+        id="alert"
+        class="alert"
+        role="status"
+        aria-live="polite"
+        hidden
+      ></div>
+      <div id="shade" class="shade" hidden>
+        <section
+          class="dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dialog-title"
+        >
+          <header>
+            <h2 id="dialog-title"></h2>
+            <button id="close" aria-label="Close panel">
+              <svg class="ico" aria-hidden="true" viewBox="0 0 24 24">
+                <use href="#ic-close"></use>
+              </svg>
+            </button>
+          </header>
+          <div id="dialog-content"></div>
+          <div id="install-panel" hidden>
+            <p>
+              On iPhone, open the published game in Safari. Choose Share, then
+              Add to Home Screen. Enable Open as Web App if offered and tap Add.
+              Launch the new icon once online.
+            </p>
+            <p>
+              On other supported browsers, use the install command in the
+              browser menu. For offline trips, wait for the status below.
+            </p>
+            <p class="offline">
+              <strong id="offline-status">Checking offline files…</strong>
+            </p>
+            <div class="dialog-actions">
+              <button id="native-install" hidden>Install game</button
+              ><button id="retry-offline" hidden>Retry offline setup</button
+              ><button id="update-button" hidden>Update game</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <button id="install-button" hidden type="button">Installation</button>
+      <noscript
+        >Enable JavaScript to draw routes and run this transit game.</noscript
+      >
+    </div>
+  </body>
+</html>
