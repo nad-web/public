@@ -1,9 +1,10 @@
 {
   "id": "arc-and-ink",
   "slug": "arc-and-ink",
+  "name": "Arc & Ink",
   "title": "Arc & Ink",
   "description": "Solve original geometry puzzles, replay each construction and explore daily variations in an offline-ready drawing laboratory.",
   "summary": "A compass and straightedge puzzle laboratory with 16 experiments, a daily challenge and a free drawing notebook.",
-  "category": "Games",
+  "category": "fun",
   "offline": false
 }
