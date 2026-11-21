@@ -2,14 +2,6 @@
 
 An independent geometric construction game developed and designed by **Noorullah Adel · 2026**. A compass fixes distances, a straightedge joins exact points, and each crossing becomes material for the next move.
 
-## Upload with GitHub Desktop
-
-1. Unzip the download. Copy the folder named **arc-and-ink** into the **applications** folder of your local **public** repository.
-2. Confirm the entry file sits directly at `applications/arc-and-ink/index.html`. Keep the contents together, including `js`, `icons`, the manifest and service worker.
-3. In GitHub Desktop, review the added folder, commit to **main** and click **Push origin**. Your existing application discovery and Pages workflow handles the new folder.
-4. In GitHub Actions, wait for the **Publish application library** job to succeed. Then open [Arc & Ink](https://nad-web.github.io/public/applications/arc-and-ink/).
-
-All game URLs are relative. The same folder also runs on another static HTTPS host. It requires no server, account, API keys, CDN or build step.
 
 ## How to play
 
